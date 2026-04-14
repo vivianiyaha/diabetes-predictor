@@ -3,6 +3,15 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
+import time
+
+# Add this at the top of your app.py
+if "last_ping" not in st.session_state:
+    st.session_state.last_ping = time.time()
+
+# Auto-rerun every 30 seconds to prevent session timeout
+time.sleep(1)
+st.rerun()
 
 # Load the diabetes dataset from Kaggle
 diabetes_df = pd.read_csv('diabetes.csv')
